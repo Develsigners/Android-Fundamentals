@@ -3,12 +3,11 @@ This is a repository of a collection of Android apps written in Kotlin for learn
 
 ## Projects
 - [x] Unit Tests
+- [ ] **Recycler View** - [@gsrathoreniks](https://github.com/gsrathoreniks) 
 - [ ] Espresso for UI Testing
 - [ ] Mockito
-- [ ] Unit Tests
 - [ ] Menus and Pickers
 - [ ] Navigation
-- [ ] Recycler View
 - [ ] Drawables, Styles, Themes
 - [ ] Adaptive Layouts
 - [ ] Async Task
