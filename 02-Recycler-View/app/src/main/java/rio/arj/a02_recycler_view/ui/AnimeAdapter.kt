@@ -3,14 +3,15 @@ package rio.arj.a02_recycler_view.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import rio.arj.a02_recycler_view.BR
-import rio.arj.a02_recycler_view.data.repository.sample.model.SampleModel
+import rio.arj.a02_recycler_view.data.repository.anime.model.Data
 import rio.arj.a02_recycler_view.databinding.ItemSampleBinding
 
-class SampleAdapter(
-      private val sampleList: List<SampleModel>,
-      private val onClickListener: (companyName: String) -> Unit
-) : RecyclerView.Adapter<SampleAdapter.ViewHolder>() {
+class AnimeAdapter(
+  private val sampleList: List<Data>,
+  private val onClickListener: (companyName: String) -> Unit
+) : RecyclerView.Adapter<AnimeAdapter.ViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     val inflater = LayoutInflater.from(parent.context)
@@ -27,13 +28,17 @@ class SampleAdapter(
   }
 
   class ViewHolder(private val itemBinding: ItemSampleBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
-    fun bind(model: SampleModel, onClickListener: (companyName: String) -> Unit) {
+    RecyclerView.ViewHolder(itemBinding.root) {
+    fun bind(model: Data, onClickListener: (companyName: String) -> Unit) {
       itemBinding.setVariable(BR.sampleModel, model)
       itemBinding.executePendingBindings()
 
+      Glide.with(itemBinding.root)
+        .load(model.animeImg)
+        .into(itemBinding.imageAnime)
+
       itemBinding.root.setOnClickListener {
-        onClickListener.invoke(model.companyName)
+        onClickListener.invoke(model.animeName.toString())
       }
     }
   }

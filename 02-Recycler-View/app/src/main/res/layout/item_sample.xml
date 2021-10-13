@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
-
   <data>
-
     <variable
       name="sampleModel"
-      type="rio.arj.a02_recycler_view.data.repository.sample.model.SampleModel" />
+      type="rio.arj.a02_recycler_view.data.repository.anime.model.Data" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +16,8 @@
       android:id="@+id/text_company_name"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:text="@{sampleModel.companyName}"
+      android:gravity="center"
+      android:text="@{sampleModel.animeName}"
       android:textAppearance="@style/TextAppearance.AppCompat.Large"
       android:textColor="@android:color/black"
       android:textStyle="bold"
@@ -27,13 +26,10 @@
       app:layout_constraintTop_toTopOf="parent"
       tools:text="@tools:sample/lorem" />
 
-    <com.google.android.material.textview.MaterialTextView
-      android:id="@+id/text_name"
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/image_anime"
       android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:text="@{sampleModel.name}"
-      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-      android:textColor="@android:color/black"
+      android:layout_height="200dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/text_company_name"

@@ -5,41 +5,41 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import rio.arj.a02_recycler_view.R
 import rio.arj.a02_recycler_view.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-  lateinit var viewModel: SampleViewModel
+  lateinit var viewModel: AnimeViewModel
   lateinit var binding: ActivityMainBinding
 
-  lateinit var sampleAdapter: SampleAdapter
+  lateinit var animeAdapter: AnimeAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    viewModel = ViewModelProvider(this).get(SampleViewModel::class.java)
+    viewModel = ViewModelProvider(this).get(AnimeViewModel::class.java)
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
     binding.viewModel = viewModel
     binding.lifecycleOwner = this
 
     /**
-     * Observer to listen new data inserted from sampleModel on SampleViewModel::class
+     * Observer to listen new data inserted from animeList on AnimeViewModel::class
      */
-    viewModel.sampleModel.observe(this, { sampleList ->
-      if (sampleList.isNotEmpty()) {
+    viewModel.animeList.observe(this, { sampleList ->
+      if (sampleList.data != null && sampleList.data.isNotEmpty()) {
         /**
          * Implement High Order Function to listen click from adapter.
          * This approach to reduce creating listener for basic implementation.
          * If you wanna override more than one function, you can create Interface.
          */
-        sampleAdapter = SampleAdapter(sampleList) { companyName ->
+        animeAdapter = AnimeAdapter(sampleList.data) { companyName ->
           Toast.makeText(this, companyName, Toast.LENGTH_SHORT).show()
         }
         binding.recyclerSampleModel.apply {
-          layoutManager = LinearLayoutManager(this@MainActivity)
-          adapter = sampleAdapter
+          layoutManager = GridLayoutManager(this@MainActivity, 2)
+          adapter = animeAdapter
         }
       }
     })
